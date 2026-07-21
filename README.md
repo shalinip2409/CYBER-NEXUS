@@ -1,8 +1,8 @@
 CYBER-NEXUS
 
-> SYSTEM STATUS: ONLINE  
-> ARCHITECTURE: Flask / Python 3.x / Tailwind CSS  
-> INTERFACE: Cyberpunk Biometric Skill Catalog
+SYSTEM STATUS: ONLINE  
+ARCHITECTURE: Flask / Python 3.x / Tailwind CSS  
+INTERFACE: Cyberpunk Biometric Skill Catalog
 
 CYBER-NEXUS is an age-adaptive skill recommendation engine and e-learning platform wrapped in a futuristic cyberpunk interface. Operatives enter their age vector to receive personalized skill augmentations, stage modules in their Cart Bay, and execute installations directly to their Neural Matrix.
 
@@ -25,13 +25,14 @@ System Architecture
 
 cyber-nexus/
 │
-├── app.py # Core Flask server & route management
-├── requirements.txt # System dependencies
-├── README.md # Diagnostic manual
+├── app.py                           # Core Flask server & route management
+├── requirements.txt                 # System dependencies
+├── Dockerfile                       # Container execution manifest
+├── README.md                        # Diagnostic manual
 │
-└── templates/ # UI Rendering Engine (Jinja2 Templates)
-├── base.html # Master layout & global dynamic navigation
-├── register.html # Initial biometric diagnostic scan
-├── recommendations.html# Age-tailored skill catalog
-├── cart.html # Staging area for selected modules
-└── profile.html # Active Neural Matrix (Installed skills)
+└── templates/                       # UI Rendering Engine (Jinja2 Templates)
+    ├── base.html                    # Master layout & global dynamic navigation
+    ├── register.html                # Initial biometric diagnostic scan
+    ├── recommendations.html         # Age-tailored skill catalog
+    ├── cart.html                    # Staging area for selected modules
+    └── profile.html                 # Active Neural Matrix (Installed skills)
