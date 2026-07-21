@@ -1,30 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="cyber-card p-6 rounded mb-8 border-l-4 border-l-pink-500">
-    <h1 class="text-lg font-bold text-cyan-300">Neural Profile</h1>
-    <p class="text-xs text-gray-400 mt-1">Operative: <strong class="text-cyan-200">{{ user.name }}</strong></p>
-    <p class="text-xs text-gray-400">Age Bracket: <strong class="text-pink-400">{{ user.tier }}</strong></p>
-</div>
+<h1 class="text-xl font-bold text-cyan-300 mb-6">Cart Bay // Staged Upgrades</h1>
 
-<h2 class="text-md font-bold text-cyan-400 mb-4">Active Installed Modules</h2>
-
-{% if courses %}
-<div class="grid md:grid-cols-2 gap-4">
-    {% for course in courses %}
-    <div class="cyber-card p-4 rounded border border-cyan-800 flex justify-between items-center">
+{% if cart %}
+<div class="space-y-3 max-w-2xl">
+    {% for item in cart %}
+    <div class="cyber-card p-4 rounded flex justify-between items-center">
         <div>
-            <span class="text-xs text-pink-400 uppercase">[{{ course.tag }}]</span>
-            <h3 class="text-sm font-bold text-cyan-100">{{ course.title }}</h3>
-            <p class="text-xs text-gray-400">{{ course.desc }}</p>
+            <h3 class="text-sm font-bold text-cyan-200">{{ item.title }}</h3>
+            <span class="text-xs text-pink-400">Tier: {{ item.tag }} | {{ item.cost }}</span>
         </div>
-        <span class="text-xs bg-cyan-950 text-cyan-400 border border-cyan-800 px-2 py-1 rounded">ACTIVE</span>
+        <form action="{{ url_for('remove_from_cart') }}" method="POST">
+            <input type="hidden" name="course_id" value="{{ item.id }}">
+            <button type="submit" class="text-xs text-red-400 hover:underline">Remove</button>
+        </form>
     </div>
     {% endfor %}
+
+    <div class="pt-4 flex justify-between items-center">
+        <a href="{{ url_for('recommendations') }}" class="text-xs text-gray-400 hover:text-cyan-300">← Back to
+            Catalog</a>
+        <form action="{{ url_for('checkout') }}" method="POST">
+            <button type="submit"
+                class="bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs px-6 py-2.5 rounded">
+                Execute Installation →
+            </button>
+        </form>
+    </div>
 </div>
 {% else %}
-<div class="cyber-card p-6 text-center rounded text-gray-500 text-xs">
-    No skill modules installed. Complete checkout in Cart Bay.
+<div class="cyber-card p-8 text-center rounded text-gray-500 text-xs">
+    Cart Bay is empty. <a href="{{ url_for('recommendations') }}" class="text-cyan-400 underline">Select modules</a>.
 </div>
 {% endif %}
 {% endblock %}
