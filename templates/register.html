@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto my-10 cyber-card p-8 rounded-lg border border-cyan-500/40">
+    <div class="text-center mb-6">
+        <h1 class="text-2xl font-black text-cyan-400 tracking-wider">BIOMETRIC DIAGNOSTIC</h1>
+        <p class="text-gray-400 text-xs mt-1">Input age vector to map optimal skill augmentations.</p>
+    </div>
+
+    <form action="{{ url_for('register') }}" method="POST" class="space-y-4 text-xs">
+        <div>
+            <label class="block mb-1 text-cyan-300">OPERATIVE NAME</label>
+            <input type="text" name="name" required placeholder="e.g. Neo / Sarah Connor"
+                class="w-full bg-gray-950 border border-cyan-800 rounded px-3 py-2 text-cyan-200 focus:outline-none focus:border-pink-500">
+        </div>
+
+        <div>
+            <label class="block mb-1 text-cyan-300">AGE (YEARS)</label>
+            <input type="number" name="age" min="1" max="120" required placeholder="e.g. 21"
+                class="w-full bg-gray-950 border border-cyan-800 rounded px-3 py-2 text-cyan-200 focus:outline-none focus:border-pink-500">
+        </div>
+
+        <button type="submit"
+            class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-extrabold py-3 rounded transition tracking-widest uppercase">
+            Run Scan →
+        </button>
+    </form>
+</div>
+{% endblock %}

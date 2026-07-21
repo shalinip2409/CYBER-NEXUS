@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mb-6 flex justify-between items-center border-b border-gray-800 pb-4">
+    <div>
+        <h1 class="text-xl font-bold text-cyan-300">Target Profile: {{ user.name }}</h1>
+        <p class="text-xs text-gray-400">Assigned Age Tier: <span class="text-pink-400 font-bold">{{ user.tier }}</span>
+        </p>
+    </div>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+    {% for course in courses %}
+    <div class="cyber-card p-5 rounded flex flex-col justify-between">
+        <div>
+            <div class="flex justify-between items-center text-xs mb-2">
+                <span class="text-pink-400 font-bold uppercase">[{{ course.tag }}]</span>
+                <span class="text-gray-400">{{ course.cost }}</span>
+            </div>
+            <h3 class="text-lg font-bold text-cyan-200 mb-2">{{ course.title }}</h3>
+            <p class="text-xs text-gray-400 mb-4 leading-relaxed">{{ course.desc }}</p>
+        </div>
+
+        <form action="{{ url_for('add_to_cart') }}" method="POST">
+            <input type="hidden" name="course_id" value="{{ course.id }}">
+            <button type="submit"
+                class="w-full border border-cyan-500 hover:bg-cyan-500 hover:text-black text-cyan-300 text-xs font-bold py-2 rounded transition">
+                + Stage in Cart
+            </button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

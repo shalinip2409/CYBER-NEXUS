@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cyber-card p-6 rounded mb-8 border-l-4 border-l-pink-500">
+    <h1 class="text-lg font-bold text-cyan-300">Neural Profile</h1>
+    <p class="text-xs text-gray-400 mt-1">Operative: <strong class="text-cyan-200">{{ user.name }}</strong></p>
+    <p class="text-xs text-gray-400">Age Bracket: <strong class="text-pink-400">{{ user.tier }}</strong></p>
+</div>
+
+<h2 class="text-md font-bold text-cyan-400 mb-4">Active Installed Modules</h2>
+
+{% if courses %}
+<div class="grid md:grid-cols-2 gap-4">
+    {% for course in courses %}
+    <div class="cyber-card p-4 rounded border border-cyan-800 flex justify-between items-center">
+        <div>
+            <span class="text-xs text-pink-400 uppercase">[{{ course.tag }}]</span>
+            <h3 class="text-sm font-bold text-cyan-100">{{ course.title }}</h3>
+            <p class="text-xs text-gray-400">{{ course.desc }}</p>
+        </div>
+        <span class="text-xs bg-cyan-950 text-cyan-400 border border-cyan-800 px-2 py-1 rounded">ACTIVE</span>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="cyber-card p-6 text-center rounded text-gray-500 text-xs">
+    No skill modules installed. Complete checkout in Cart Bay.
+</div>
+{% endif %}
+{% endblock %}

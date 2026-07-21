@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-xl font-bold text-cyan-300 mb-6">Cart Bay // Staged Upgrades</h1>
+
+{% if cart %}
+<div class="space-y-3 max-w-2xl">
+    {% for item in cart %}
+    <div class="cyber-card p-4 rounded flex justify-between items-center">
+        <div>
+            <h3 class="text-sm font-bold text-cyan-200">{{ item.title }}</h3>
+            <span class="text-xs text-pink-400">Tier: {{ item.tag }} | {{ item.cost }}</span>
+        </div>
+        <form action="{{ url_for('remove_from_cart') }}" method="POST">
+            <input type="hidden" name="course_id" value="{{ item.id }}">
+            <button type="submit" class="text-xs text-red-400 hover:underline">Remove</button>
+        </form>
+    </div>
+    {% endfor %}
+
+    <div class="pt-4 flex justify-between items-center">
+        <a href="{{ url_for('recommendations') }}" class="text-xs text-gray-400 hover:text-cyan-300">← Back to
+            Catalog</a>
+        <form action="{{ url_for('checkout') }}" method="POST">
+            <button type="submit"
+                class="bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs px-6 py-2.5 rounded">
+                Execute Installation →
+            </button>
+        </form>
+    </div>
+</div>
+{% else %}
+<div class="cyber-card p-8 text-center rounded text-gray-500 text-xs">
+    Cart Bay is empty. <a href="{{ url_for('recommendations') }}" class="text-cyan-400 underline">Select modules</a>.
+</div>
+{% endif %}
+{% endblock %}
